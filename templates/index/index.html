@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block extend_head %}
+    <link rel="stylesheet" href="{% static 'CSS/index.css' %}">
+{% endblock %}
+
+
+{% block body %}
+    <div class="container-fluid p-0">
+        <div class="row clearfix">
+            <div class="col-md-12 ">
+                <!-- 首页介绍-->
+                <section class="justify-content-center align-content-center  mb-sm-3 pt-lg-5" style="min-height:90vh;" id="section-home">
+                    <div class="col-md-12 text-center mb-0 mt-lg-5">
+                        <img class="img-fluid hover-enlarge" src="{% static 'icons/logo.png' %}" alt="logos">
+                    </div>
+                    <div class="col-md-12 text-center m-auto">
+                        <h1>您好，我是 <strong>HTmonster</strong> </h1>
+                        <p class="lead">中二少年，梦想是赚大钱，哈哈。欢迎来到我的主站！</p>
+                        <a href="#section-item" class=" btn btn-outline-secondary mt-2 pb-0 " ><h6>MORE ABOUT</h6></a>
+                    </div>
+                </section>
+
+                <!-- 联系-->
+                <section class=" mt-sm-5 mt-md-4  mb-5"  id="section-home">
+                    <div class="container">
+                        <div class="row justify-content-center align-content-center">
+                          <div class="col-12">
+                            <div class="section-heading text-center">
+                                <div style="width: 80px;height:20px;border-bottom:#57d131 solid 4px; margin:20px auto"></div>
+                                <h2>联系我</h2>
+                            </div>
+                          </div>
+                          <div class="col-md-6 col-sm-12">
+                            <form action="" class="site-form" method="post">
+                                {% csrf_token %}
+                                <h3 class="mb-5 font-weight-lighter">Get In Touch</h3>
+                                <div class="form-group aos-animate aos-init" aos="fade-up" aos-delay="200">
+                                    <input type="text" required="required" class="form-control px-3 py-4" placeholder="Your Name" name="name">
+                                </div>
+                                <div class="form-group aos-animate aos-init" aos="fade-up" aos-delay="300">
+                                    <input type="email" required="required" class="form-control px-3 py-4" placeholder="Your Email" name="email">
+                                </div>
+                                <div class="form-group mb-5 aos-animate aos-init" aos="fade-up" aos-delay="400">
+                                    <textarea required="required" class="form-control px-3 py-4" cols="30" rows="10" placeholder="Write a Message" name="body"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <input type="submit" class="btn btn-success" value="提交">
+                                </div>
+
+                            </form>
+                          </div>
+                          <div class="col-md-5 col-sm-12 ml-lg-4">
+                            <h3 class="mb-4 font-weight-lighter mt-3">我的联系方式</h3>
+                            <ul class="site-contact-details">
+                              <li>
+                                <h6>Email</h6>
+                                Theo_hui@163.com
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                    </div>
+
+                </section>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block extend_script %}
+    <script src="{% static 'js/index.js' %}"></script>
+{% endblock %}

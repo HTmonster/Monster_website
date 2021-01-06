@@ -1,0 +1,90 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="cn-zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="{% static 'icons/logo.ico' %}" />
+    {% block title %}
+         <title>HTmonster的个人主站</title>
+    {% endblock %}
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'bootwatch/bootstrap-litera.min.css' %}" >
+    <link rel="stylesheet" href="{% static 'aos/aos.css' %}">
+    <link rel="stylesheet" href="{% static 'CSS/base.css' %}">
+    {% block extend_head %}
+    
+    {% endblock %}
+
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <nav class="navbar navbar-expand-md fixed-top site-nav navbar-light bg-light" id="nav">
+                <!-- logo -->
+                <a class="navbar-brand site-brand hover-enlarge" href="#"> </a><img style="max-width:150px;margin-top:-7px;" src="{% static 'icons/logo.jpg' %}"></a>
+
+                <!-- 切换按钮 -->
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar"><span class="navbar-toggler-icon"></span></button>
+
+				<div class="collapse navbar-collapse" id="collapsibleNavbar">
+					<ul class="navbar-nav mr-auto" >
+						<li class="nav-item ml-2 hover-enlarge">
+							 <a class="nav-link" >首页</a>
+						</li>
+						<li class="nav-item ml-2">
+							 <a class="nav-link hover-enlarge" >工具</a>
+						</li >
+                        <li class="nav-item ml-2">
+							 <a class="nav-link hover-enlarge" >友链</a>
+						</li >
+						<li class="nav-item dropdown ml-2 hover-enlarge">
+                            <a class="nav-link dropdown-toggle"  id="navbardrop" data-toggle="dropdown">博客<strong class="caret"></strong></a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" >博客列表</a>
+                                <a class="dropdown-item" >归档</a>
+                            </div>
+						</li>
+					</ul>
+					<form class="form-inline">
+						<input class="form-control" type="text">
+                        <button type="submit" class="btn btn-secondary my-2 my-sm-0">
+                            搜索<i class="fa fa-search" aria-hidden="true"></i>
+                        </button>
+					</form>
+                      <div class="navbar-nav site-me my-2 my-lg-0">
+                          <button>怪兽·涛</button>
+                      </div>
+				</div>
+
+			</nav>
+        </div>
+    </div>
+</div>
+
+<!-- 主体 -->
+{% block body %}
+
+
+{% endblock %}
+<footer class="site-footer"> <div class="container-fluid"><div class="row mb-3"><div class="col-md-12 text-center"><p><a href="https://github.com/HTmonster" class="social-item aos-animate aos-init" aos="zoom-in" aos-delay="200"><i class="fa fa-github-alt" aria-hidden="true"></i> </a><a href="#" class="social-item aos-animate aos-init" aos="zoom-in" aos-delay="200"><i class="fa fa-camera" aria-hidden="true"></i></a><a href="#" class="social-item aos-animate aos-init" aos="zoom-in" aos-delay="200"><i class="fa fa-rss-square" aria-hidden="true"></i></a></p></div></div><div class="row"><p class="col-12 text-center">Copyright &copy; <script>document.write(new Date().getFullYear());</script> - HTmonster | 怪兽涛 <a href="http://www.htmonster.xyz/" target="_blank">个人主页</a></p></div></div></footer>
+
+</body>
+
+<link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
+<script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script src="{% static "aos/aos.js" %}"></script>
+<script>
+    AOS.init({
+        easing: 'ease-out-back',
+        duration: 1000
+    });
+</script>
+{% block extend_script %}
+
+{% endblock %}
+</html>

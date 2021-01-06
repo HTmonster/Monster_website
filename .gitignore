@@ -1,7 +1,11 @@
 # Byte-compiled / optimized / DLL files
+web/settings.py
+settings.py
+
 __pycache__/
 *.py[cod]
 *$py.class
+.idea
 
 # C extensions
 *.so
