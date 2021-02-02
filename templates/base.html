@@ -64,11 +64,32 @@
     </div>
 </div>
 
-<!-- 主体 -->
-{% block body %}
+    <div style="margin-top: 80px">
+
+    <!-- 全局消息模块 -->
+    {% if messages %}
+        {% for msg in messages %}
+            {% if msg.tags == "success"  %}
+                <div class="alert alert-success alert-dismissible fade show ">
+            {% elif msg.tags == "info" %}
+                <div class="alert alert-info alert-dismissible fade show ">
+            {% elif msg.tags == "warning" %}
+                <div class="alert alert-danger alert-dismissible fade show ">
+            {% else %}
+                <div class="alert alert-dismissible fade show ">
+            {% endif %}
+                   <a href="#" class="close" data-dismiss="alert">&times;</a>
+                    {{ msg.message }}
+                </div>
+        {% endfor %}
+    {% endif %}
+
+    <!-- 主体 -->
+    {% block body %}
 
 
-{% endblock %}
+    {% endblock %}
+    </div>
 <footer class="site-footer"> <div class="container-fluid"><div class="row mb-3"><div class="col-md-12 text-center"><p><a href="https://github.com/HTmonster" class="social-item aos-animate aos-init" aos="zoom-in" aos-delay="200"><i class="fa fa-github-alt" aria-hidden="true"></i> </a><a href="#" class="social-item aos-animate aos-init" aos="zoom-in" aos-delay="200"><i class="fa fa-camera" aria-hidden="true"></i></a><a href="#" class="social-item aos-animate aos-init" aos="zoom-in" aos-delay="200"><i class="fa fa-rss-square" aria-hidden="true"></i></a></p></div></div><div class="row"><p class="col-12 text-center">Copyright &copy; <script>document.write(new Date().getFullYear());</script> - HTmonster | 怪兽涛 <a href="http://www.htmonster.xyz/" target="_blank">个人主页</a></p></div></div></footer>
 
 </body>
