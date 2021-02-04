@@ -4,6 +4,7 @@ from django.shortcuts import render
 # Create your views here.
 
 from .forms import MessageForm
+from .models import ReqLog
 
 
 def index(request):
@@ -21,5 +22,7 @@ def index(request):
             messages.warning(request, "提交出错啦，可能格式不正确")
     else:
         message_form = MessageForm()
+        visited=ReqLog.objects.all().count()# 访问统计
 
-    return render(request, 'index/index.html', {'message_form': message_form})
+
+    return render(request, 'index/index.html', {'message_form': message_form,'visited':visited})

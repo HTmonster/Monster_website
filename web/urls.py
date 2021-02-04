@@ -18,9 +18,15 @@ from django.urls import path,include
 
 import index.urls
 import lyric.urls
+import blog.urls
+import oauth.urls
+import friendlink.urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(lyric.urls)),
+    path('blog/', include(blog.urls)),
+    path('oauth/', include(oauth.urls)),
+    path('friendlink/', include(friendlink.urls)),
     path('',include(index.urls))
 ]

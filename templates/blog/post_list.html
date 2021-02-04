@@ -1,0 +1,148 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block extend_head %}
+    <link rel="stylesheet" href="{% static 'CSS/post_list.css' %}">
+{% endblock %}
+
+
+{% block body %}
+    <div class="container-fluid bg-light">
+        <div class="container">
+        <div class="row">
+            <div class="col-md-8 ">
+                <!-- 博客列表 -->
+                {% for post in Posts  %}
+                <div class="card mb-4 aos-init aos-animate" aos="zoom-in" >
+                    <div class="card-body" style="background-color:rgba(255,255,255,0.8);" >
+                      <h4 class="card-title">{{ post.title }}</h4>
+                      <span style="color: grey">
+                          {{ post.time_publish }}
+                          <i class="fa fa-eye" aria-hidden="true"></i>{{ post.views_nums }}
+                          <i class="fa fa-commenting-o" aria-hidden="true"></i>:{{ post.comments.count }}
+                          {% for tag in post.tag.all %}
+                                <span class="badge badge-light">#{{ tag }}</span>
+                          {% endfor %}
+                      </span>
+
+                      <p class="card-text"> {{ post.body|truncatechars:100}}</p>
+                      <a class="card-link btn-success text-white pt-1 pb-1 pl-3 pr-3" style="-webkit-border-radius: 1rem;-moz-border-radius: 1rem;border-radius: 1rem;" href="{{ post.get_absolute_url }}">READ ME</a>
+                    </div>
+                </div>
+                {% endfor %}
+
+                <!-- 分页 -->
+                {% if is_paginated %}
+                <nav class="pagination-outer " aria-label="Page navigation">
+                    <div class="pagination" >
+                        <li class="page-item" ><a  class="page-link"  href="{{ pagination_url }}1">首</a></li>
+
+                        {% if front_5_page %}
+                              <li class="page-item paginator-sm-hidden" ><a  class="page-link"  href="{{ pagination_url }}{{ front_5_page }}">←</a></li>
+                        {% endif %}
+
+{#                        {% if page_obj.has_previous %}#}
+{#                            <li class="page-item" ><a  class="page-link"  href="{{ pagination_url }}{{ page_obj.previous_page_number }}">‹</a></li>#}
+{#                        {% endif %}#}
+                        {% for number in page_range%}
+                            {% if number == page_obj.number %}
+                                <li class="active"><a class="page-link" href="#" >{{ number }}</a></li>
+                            {% else %}
+                                <li class="page-item" ><a class="page-link" href="{{ pagination_url }}{{ number }}">{{ number }}</a></li>
+                            {% endif %}
+
+                        {% endfor %}
+
+                        {% if back_5_page %}
+                            <li class="page-item paginator-sm-hidden" ><a  class="page-link"  href="{{ pagination_url }}{{ back_5_page }}">→</a></li>
+                        {% endif %}
+
+                        {% if page_obj.has_next %}
+{#                          <li class="page-item" ><a class="page-link" href="{{ pagination_url }}{{ page_obj.next_page_number}}">›</a></li>#}
+                            <li class="page-item" ><a class="page-link" href="{{ pagination_url }}{{ paginator.num_pages }}">尾</a></li>
+                        {%endif  %}
+                    </div>
+                </nav>
+                {% endif %}
+            </div>
+
+            <!-- 侧边栏-->
+            <div class="col-md-4 ">
+                <div class="card d-block d-sm-none d-md-block" style="border-radius: 4px;border:0;">
+                  <div class="card-body" style="text-align: center;">
+
+                      <h5 style="display: block;margin: 20px auto; border-bottom: 2px solid black;padding-bottom: 8px;">HTmonster's Blog</h5>
+                      <div class="row mb-2">
+                          <div class="col-6">
+                              <h6 class="hover-enlarge card-text font-weight-bold">
+                                  文章
+                              </h6>
+                              <p>
+                                  {{ post_count }}
+                              </p>
+                          </div>
+                          <div class="col-6">
+                              <h6 class="hover-enlarge card-text font-weight-bold">
+                                  分类
+                              </h6>
+                              <p>
+                                  {{ tags.count }}
+                              </p>
+                          </div>
+                      </div>
+{#                      <div class="row">#}
+{#                          <div class="col-2 hover-enlarge"><i class="fa fa-github fa-lg" aria-hidden="true"></i></div>#}
+{#                          <div class="col-2 hover-enlarge"><i class="fa fa-instagram fa-lg" aria-hidden="true"></i></div>#}
+{#                          <div class="col-2 hover-enlarge"><i class="fa fa-linkedin-square fa-lg" aria-hidden="true"></i></div>#}
+{#                          <div class="col-2 hover-enlarge"><i class="fa fa-weibo fa-lg" aria-hidden="true"></i></div>#}
+{#                          <div class="col-2 hover-enlarge"><i class="fa fa-weixin fa-lg" aria-hidden="true"></i></div>#}
+{#                          <div class="col-2 hover-enlarge"><i class="fa fa-rss-square fa-lg" aria-hidden="true"></i></div>#}
+{#                      </div>#}
+                  </div>
+                </div>
+
+                <div class="card d-block d-sm-none d-md-block mt-4" style="border-radius: 4px;border: 0;">
+                    <div class="card-body">
+                        <h5>Top阅读</h5>
+                        <ul class="list-group" style="border:0;">
+                          {% for top_post in top_posts %}
+                            <li class="list-group-item mb-0 a-none" style="border:0;">
+                                <a class="hover-line" style="color: black"  href="{{ top_post.get_absolute_url }}">
+                                    #{{ forloop.counter }} {{ top_post.title }} {{ top_post.views_nums }}
+                                </a>
+                            </li>
+                          {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 标签云 --->
+                <div class="card d-block d-sm-none d-md-block mt-4" style="border:0;">
+                    <div class="card-body float-left">
+
+                        {% for tag in tags %}
+                        <a class="badge badge-secondary mt-2" href="{% url 'blog:post_list' %}?tag={{ tag.name }}">
+                            {{ tag.name }}
+                        </a>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+
+    </div>
+
+{% endblock %}
+{% block body_script %}
+    <script type="text/javascript">
+        var viewW = $(window).width();
+        if (viewW>425){
+           $('.paginator-sm-hidden').show()
+        }
+        else{
+           $('.paginator-sm-hidden').hide()
+        }
+    </script>
+{% endblock %}

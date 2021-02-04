@@ -1,0 +1,142 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}
+    <title>{{ post.title }}</title>
+{% endblock %}
+
+
+
+{% block extend_head %}
+    <link rel="stylesheet" href="{% static 'CSS/post.css' %}">
+    <link rel="stylesheet" href="{% static 'markdown/monokai.css' %}">
+    <link rel="stylesheet" href="{% static 'markdown/markdown.css' %}">
+{% endblock %}
+
+
+{% block body %}
+    <div class="container">
+	    <div class="row clearfix" >
+		<div class="col-md-8 column">
+            <!-- 文章标题 -->
+			<div class="pb-2 mt-4 mb-2 border-bottom">
+				<h1>
+					{{ post.title }}
+				</h1>
+                <span style="color:gray;font-size: 10px" class="a-none">
+                    阅读量 <i class="fa fa-eye" aria-hidden="true"></i>{{ post.views_nums }}
+
+                {% for tag in post.tag.all %}
+                    <a class="badge badge-light" href="{% url 'blog:post_list' %}?tag={{ tag.name }}">#{{ tag }}</a>
+                {% endfor %}
+                </span>
+			</div>
+
+            <!-- 文章内容 -->
+			<div class="markdown">
+                {{ post.body|safe}}
+            </div>
+
+            <!-- 评论 -->
+            <br><hr><br>
+            {% include 'blog/post_comments.html' %}
+            <br>
+            <div class="add-comments">
+            <h2 style="display: inline">添加您的评论</h2>
+            {% if  user.is_authenticated  %}
+                <div class="user">
+                    <i class="fa fa-user-o" aria-hidden="true"></i>
+                    <b>{{ user.username }}</b>
+                    </div>
+                <hr>
+                <form role="form" action="." method="post">
+                    <div class="form-group">
+                        <input class="btn btn-outline-primary" id="submit_comment" type="submit" value="添加评论">
+                        {{ comment_form}}
+                        {% csrf_token %}
+                    </div>
+                </form>
+            {% else %}
+                <div class="user"><a href="{% url 'oauth:github_login' %}">GitHub登录评论</a></div>
+                <form role="form" action="." method="post">
+                    <div class="form-group">
+                        <input  disabled="disabled" class="btn btn-secondary" id="submit_comment" type="submit" value="添加评论">
+                        {{ comment_form}}
+                        {% csrf_token %}
+                    </div>
+                </form>
+            {% endif %}
+            </div>
+		</div>
+		<div class="col-md-4 column a-none">
+            <div id="accordion">
+                <!-- 类似文章 -->
+                <div class="card a-none">
+                  <div class="card-header site-card-header">
+                    <a class="card-link" data-toggle="collapse" href="#collapseOne">
+                      类似文章
+                    </a>
+                  </div>
+                  <div id="collapseOne" class="collapse show" data-parent="#accordion">
+                    <div class="card-body list-group-flush list-group">
+                         {% for similar_post in similar_posts %}
+                                <li class="list-group-item">
+                                    <a href="{{ similar_post.get_absolute_url }}">
+                                        {{ similar_post.title }}
+                                    </a>
+                                </li>
+                        {% endfor %}
+                    </div>
+                  </div>
+                </div>
+
+                <!-- 最近发表 -->
+                <div class="card a-none">
+                   <div class="card-header site-card-header">
+                      <a class="collapsed card-link" data-toggle="collapse" href="#collapseTwo">
+                        最近发表
+                      </a>
+                   </div>
+                  <div id="collapseTwo" class="collapse" data-parent="#accordion">
+                    <div class="card-body list-group-flush list-group">
+                        {% for post in recent_posts %}
+                            <li class="list-group-item">
+                                    <a href="{{ post.get_absolute_url }}">
+                                        {{ post.title }}
+                                    </a>
+                            </li>
+                        {% endfor %}
+                    </div>
+                  </div>
+                </div>
+            </div>
+
+{#         </div>#}
+            <!-- 目录 -->
+             <div class="catalog d-none d-sm-block border">
+                 <p>目录</p>
+                 {{ post.toc|safe }}
+                 <a href="javascript:void(0);" class="top"><i class="fa fa-arrow-up" aria-hidden="true"></i>返回顶部</a>
+             </div>
+	    </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extend_script %}
+    <script src="{% static 'js/post.js' %}"></script>
+    <script>
+    function comment_ajax(current_url,page) {
+        $.ajax({
+            type:"GET",
+            url:current_url,
+            data:{"page":page},
+            success:function (data) {
+                console.log(data);
+                $(".comments").html(data)
+            }
+        })
+    }
+    </script>
+{% endblock %}

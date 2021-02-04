@@ -32,28 +32,24 @@
 				<div class="collapse navbar-collapse" id="collapsibleNavbar">
 					<ul class="navbar-nav mr-auto" >
 						<li class="nav-item ml-2 hover-enlarge">
-							 <a class="nav-link" >首页</a>
+							 <a class="nav-link" href="{% url 'index:index' %}">首页</a>
 						</li>
 						<li class="nav-item ml-2">
-							 <a class="nav-link hover-enlarge" >工具</a>
+							 <a class="nav-link hover-enlarge" href="{% url 'blog:post_list' %}">博客</a>
 						</li >
                         <li class="nav-item ml-2">
-							 <a class="nav-link hover-enlarge" >友链</a>
+							 <a class="nav-link hover-enlarge" href="{% url 'blog:post_archive' %}">归档</a>
 						</li >
-						<li class="nav-item dropdown ml-2 hover-enlarge">
-                            <a class="nav-link dropdown-toggle"  id="navbardrop" data-toggle="dropdown">博客<strong class="caret"></strong></a>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" >博客列表</a>
-                                <a class="dropdown-item" >归档</a>
-                            </div>
-						</li>
+                        <li class="nav-item ml-2">
+							 <a class="nav-link hover-enlarge" href="{% url 'friendlink:friendlink' %}">友链</a>
+						</li >
 					</ul>
-					<form class="form-inline">
-						<input class="form-control" type="text">
-                        <button type="submit" class="btn btn-secondary my-2 my-sm-0">
-                            搜索<i class="fa fa-search" aria-hidden="true"></i>
-                        </button>
-					</form>
+{#					<form class="form-inline">#}
+{#						<input class="form-control" type="text">#}
+{#                        <button type="submit" class="btn btn-secondary my-2 my-sm-0">#}
+{#                            搜索<i class="fa fa-search" aria-hidden="true"></i>#}
+{#                        </button>#}
+{#					</form>#}
                       <div class="navbar-nav site-me my-2 my-lg-0">
                           <button>怪兽·涛</button>
                       </div>
@@ -90,7 +86,7 @@
 
     {% endblock %}
     </div>
-<footer class="site-footer"> <div class="container-fluid"><div class="row mb-3"><div class="col-md-12 text-center"><p><a href="https://github.com/HTmonster" class="social-item aos-animate aos-init" aos="zoom-in" aos-delay="200"><i class="fa fa-github-alt" aria-hidden="true"></i> </a><a href="#" class="social-item aos-animate aos-init" aos="zoom-in" aos-delay="200"><i class="fa fa-camera" aria-hidden="true"></i></a><a href="#" class="social-item aos-animate aos-init" aos="zoom-in" aos-delay="200"><i class="fa fa-rss-square" aria-hidden="true"></i></a></p></div></div><div class="row"><p class="col-12 text-center">Copyright &copy; <script>document.write(new Date().getFullYear());</script> - HTmonster | 怪兽涛 <a href="http://www.htmonster.xyz/" target="_blank">个人主页</a></p></div></div></footer>
+<footer class="site-footer"> <div class="container-fluid"><div class="row mb-3"><div class="col-md-12 text-center"><p><a href="https://github.com/HTmonster" class="social-item aos-animate aos-init" aos="zoom-in" aos-delay="200"><i class="fa fa-github-alt" aria-hidden="true"></i> </a><a href="#" class="social-item aos-animate aos-init" aos="zoom-in" aos-delay="200"><i class="fa fa-camera" aria-hidden="true"></i></a><a href="#" class="social-item aos-animate aos-init" aos="zoom-in" aos-delay="200"><i class="fa fa-rss-square" aria-hidden="true"></i></a></p></div></div><div class="row"><p class="col-12 text-center">Copyright &copy; <script>document.write(new Date().getFullYear());</script> - HTmonster | 怪兽涛 {% if visited %} <i class="fa fa-cube" aria-hidden="true"></i>访问统计:{{ visited }}  {% endif %} </p></div></div></footer>
 
 </body>
 
@@ -105,6 +101,7 @@
         duration: 1000
     });
 </script>
+
 {% block extend_script %}
 
 {% endblock %}

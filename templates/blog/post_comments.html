@@ -1,0 +1,35 @@
+<div class="comments">
+    <h2>评论</h2>
+    {% for comment in comments %}
+        <div class="card mb-1 ">
+            <div class="card-header  ">
+                <img class="user-avatar" src="{{ comment.user.profile.avatar_url }}">
+                <b>{{ comment.user.username }} </b>
+                {{ comment.time_update }}
+            </div>
+            <div class="card-body">
+                {{ comment.body }}
+            </div>
+        </div>
+    {% endfor %}
+<!-- 评论分页 -->
+    <nav class="pagination-outer" aria-label="Page navigation">
+    <div class="pagination pagination-sm" >
+        {% if comments.has_previous %}
+            <li class="page-item" ><a  class="page-link" onclick="comment_ajax('{{ current_url }}','{{ comments.previous_page_number }}')">«</a></li>
+        {% endif %}
+        {% for number in comments_page_nums %}
+            {% if number == comments.number %}
+                <li class="page-item active "><a class="page-link" href="#" id="{{ number }}">{{ number }}</a></li>
+            {% else %}
+                <li class="page-item" ><a class="page-link" onclick="comment_ajax('{{ current_url }}','{{ number }}')">{{ number }}</a></li>
+            {% endif %}
+
+        {% endfor %}
+
+      {% if comments.has_next %}
+          <li class="page-item" ><a class="page-link" onclick="comment_ajax('{{ current_url }}','{{ comments.next_page_number }}')">»</a></li>
+      {%endif  %}
+    </div>
+    </nav>
+</div>

@@ -1,0 +1,149 @@
+/*------------------------------图像设置--------------------*/
+.user-avatar {
+    width: 40px;
+    height: 40px;
+}
+
+/*-------------------------------评论区---------------------*/
+.add-comments{
+
+}
+
+.add-comments .user{
+    display: inline;
+    float: right;
+}
+
+.add-comments .btn{
+    margin-bottom: 10px;
+}
+
+#submit_comment{
+    float: right;
+}
+
+
+#id_body {
+            display: block;
+            width: 100%;
+            height: auto;
+            line-height: 1.5;
+            color: #495057;
+            background-color: #fff;
+            background-clip: padding-box;
+            border: 2px solid #ced4da;
+            border-radius: 1rem;
+        }
+
+
+
+/*--------------------------------目录-----------------------*/
+@media screen and (min-width: 800px) {
+    .catalog {
+        position:fixed;
+        width: 240px;
+        max-height: 700px;
+        opacity:0;
+        /*background-color: #e8eaed;*/
+        padding: 20px 20px;
+    }
+}
+
+
+
+.catalog p{
+    color: #767676;
+    font-size: 17px;
+    line-height: 35px;
+}
+.top{
+    color: #767676;
+    line-height: 35px;
+}
+.catalog ul,.catalog li{
+    list-style-type:none;
+    font-size: 15px;
+    line-height: 27px;
+}
+.catalog a{
+    color: #767676;
+}
+
+.catalog a:hover{
+   color: #0078a4;
+}
+
+/*--------------------------------卡片---------------------*/
+.site-card-header a{
+    color: black;
+    font-weight: bold;
+}
+
+/*------------------------------侧边栏项目-------------------*/
+.list-group-item a {
+    color: black;
+}
+.list-group-item a:hover{
+    border-left: 10px solid black;
+    padding-left: 20px;
+}
+
+
+/*--------------------------分页器--------------------------*/
+
+.pagination-outer{ text-align: right; }
+.pagination{
+    /*font-family: 'Oxygen', sans-serif;*/
+    display: inline-flex;
+    position: relative;
+}
+.pagination li a.page-link{
+    /*color: #57d131;*/
+    background-color: transparent;
+    margin: 0 15px 0 0;
+    /*border: 1px solid #57d131;*/
+    border-radius: 0;
+    position: relative;
+    z-index: 1;
+    transition: all 0.4s ease 0s;
+}
+
+.pagination li a.page-link:before,
+.pagination li a.page-link:after{
+    content: '';
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+    transform: scale(0) rotateX(360deg);
+    position: absolute;
+    left:0 ;
+    top: 0;
+    z-index: -1;
+    transition: all 0.3s;
+}
+.pagination li a.page-link:after{
+    background-color: transparent;
+    border-radius: 0;
+    transform: scale(0.7);
+    transition-delay: 0.1s;
+}
+.pagination li a.page-link:hover:before{
+    border-radius: 0;
+    transform: scale(1) rotateX(0);
+}
+.pagination li a.page-link:hover:after{
+    background-color: #007BFF;
+    opacity: 0;
+    transform: scale(1.5);
+}
+@media only screen and (max-width: 480px){
+    .pagination{
+        display: block;
+        border-radius: 20px;
+    }
+    .pagination li{
+        margin: 5px 2px;
+        display: inline-block;
+    }
+    .pagination li a.page-link{ margin: 0; }
+}

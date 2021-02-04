@@ -1,0 +1,54 @@
+
+.markdown {
+    font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+}
+
+/***************************************表格*********************************************/
+.markdown table { padding: 0px; word-break: initial; margin:20px;}
+.markdown table tr { border-top: 1px solid rgb(223, 226, 229); margin: 0px; padding: 0px; }
+.markdown table tr:nth-child(2n), thead { background-color: rgb(248, 248, 248); }
+.markdown table tr th { font-weight: bold; border-width: 1px 1px 0px; border-top-style: solid; border-right-style: solid; border-left-style: solid; border-top-color: rgb(223, 226, 229); border-right-color: rgb(223, 226, 229); border-left-color: rgb(223, 226, 229); border-image: initial; border-bottom-style: initial; border-bottom-color: initial; margin: 0px; padding: 6px 13px; }
+.markdown table tr td { border: 1px solid rgb(223, 226, 229); margin: 0px; padding: 6px 13px; }
+.markdown table tr th:first-child, table tr td:first-child { margin-top: 0px; }
+.markdown table tr th:first-child, table tr td:first-child { margin-top: 0px; }
+.markdown table tr th:last-child, table tr td:last-child { margin-bottom: 0px; }
+
+/***************************************引用*********************************************/
+.markdown blockquote {
+    display: block;
+    padding: 16px;
+    margin-left: 15px;
+    border-left: 8px solid #dddfe4;
+    background: #eef0f4;
+    overflow: auto;
+}
+
+/**************************************标题**********************************************/
+
+.markdown h3{
+   margin-top:2.5em;
+   display:"block";
+}
+.markdown h4{
+   margin-top:1.5em;
+   display:"block";
+}
+.markdown h5{
+    line-height:150%
+}
+
+.markdown h3:before{
+    content:"#"
+}
+
+/**************************************图片**********************************************/
+
+.markdown img{
+    max-width: 100%;
+}
+
+/**************************************代码**********************************************/
+.markdown .codehilite{
+    margin-left: 15px;
+    padding:10px 15px;
+}
