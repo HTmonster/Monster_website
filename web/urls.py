@@ -22,6 +22,8 @@ import blog.urls
 import oauth.urls
 import friendlink.urls
 
+from . import views
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(lyric.urls)),
@@ -30,3 +32,8 @@ urlpatterns = [
     path('friendlink/', include(friendlink.urls)),
     path('',include(index.urls))
 ]
+
+
+handler404=views.page_not_found
+handler400=views.bad_request
+handler500=views.server_error

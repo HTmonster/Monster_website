@@ -95,7 +95,7 @@ def post_detail(request,slug):
         md = markdown.Markdown(extensions=[
                 'markdown.extensions.extra',
                 'markdown.extensions.codehilite', #代码高亮扩展
-                TocExtension(baselevel=1,slugify=slugify),# 摘要
+                TocExtension(baselevel='1',slugify=slugify),# 摘要
                 'markdown.extensions.tables'])
         post.body=md.convert(post.body)
         post.toc =md.toc
